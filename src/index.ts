@@ -21,9 +21,6 @@ class Block {
     public data: string;
     public timestamp: number;
 
-    
-    
-
     constructor (
         index: number,
         hash: string,
@@ -36,7 +33,6 @@ class Block {
         this.previousHash = previousHash;
         this.data = data;
         this.timestamp = timestamp;
-
     }
 }
 
@@ -67,8 +63,9 @@ const createNewBlock = (data:string) : Block => {
         data,
         newTimestamp
     );
+    addBlock(newBlock);
     return newBlock;
-}
+};
 
 const getHashforBlock = (aBlock: Block) :string => Block.calculateBlockHash(aBlock.index, aBlock.previousHash, aBlock.timestamp, aBlock.data);
 
@@ -91,5 +88,11 @@ const addBlock = (candidateBlock: Block) : void => {
         blockchain.push(candidateBlock);
     }
 };
+
+createNewBlock("second Block");
+createNewBlock("third Block");
+createNewBlock("fourth Block");
+
+console.log(blockchain);
 
 export {};
